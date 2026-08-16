@@ -1,0 +1,15 @@
+{
+  "name": "eduflex-academy",
+  "version": "1.0.0",
+  "description": "EduFlex Academy - Turnkey MERN Stack EdTech & Training Platform",
+  "main": "backend/server.js",
+  "scripts": {
+    "start": "node backend/server.js",
+    "server": "cd backend && npm run dev",
+    "client": "cd frontend && npm start",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "keywords": ["mern", "edtech", "training-academy", "eduflex-academy"],
+  "author": "EduFlex Academy Team",
+  "license": "ISC"
+}
