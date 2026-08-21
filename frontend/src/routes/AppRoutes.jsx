@@ -6,7 +6,10 @@ import WebDevPage from '../pages/web-development/WebDevPage';
 import DataSciencePage from '../pages/data-science-ai/DataSciencePage';
 import CybersecurityPage from '../pages/cybersecurity/CybersecurityPage';
 import UiUxPage from '../pages/uiux-design/UiUxPage';
-
+import MernBootcamp from '../pages/web-development/MernBootcamp';
+import ReactMasterclass from '../pages/web-development/ReactMasterclass';
+import NodeApiCourse from '../pages/web-development/NodeApiCourse';
+import EnrollmentForm from '../pages/web-development/EnrollmentForm';
 const AppRoutes = () => {
   return (
     <Routes>
@@ -16,6 +19,11 @@ const AppRoutes = () => {
       <Route path="/data-science-ai" element={<DataSciencePage />} />
       <Route path="/cybersecurity" element={<CybersecurityPage />} />
       <Route path="/uiux-design" element={<UiUxPage />} />
+      <Route path="/web-development/mern-bootcamp" element={<MernBootcamp />} />
+<Route path="/web-development/react-masterclass" element={<ReactMasterclass />} />
+<Route path="/web-development/node-api-course" element={<NodeApiCourse />} />
+<Route path="/web-development/EnrollmentForm" element={<EnrollmentForm />} />
+
     </Routes>
   );
 };
