@@ -1,7 +1,9 @@
+// Load environment variables FIRST - before anything else
+const path = require('path');
+require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
+
 // Import mongoose for database connection and models
 const mongoose = require('mongoose');
-// Import dotenv to load environment variables from .env file
-const dotenv = require('dotenv');
 
 // Import all the model schemas we created
 // These represent the structure of our database collections
@@ -9,10 +11,6 @@ const Student = require('./models/Student');
 const Course = require('./models/Course');
 const Enrollment = require('./models/Enrollment');
 const Certificate = require('./models/Certificate');
-
-// Load environment variables from .env file into process.env
-// This gives us access to MONGODB_URI and other secrets
-dotenv.config();
 
 // Connect to MongoDB using the connection string from .env
 // If MONGODB_URI is not set, fallback to local MongoDB
@@ -27,13 +25,13 @@ const courses = [
   // FULL STACK TRACK - 3 courses
   // ============================================
   {
-    title: 'MERN Stack Bootcamp Pakistan', // Course name
-    description: 'Complete full-stack web development with MongoDB, Express, React, and Node.js. Build real-world projects from scratch.', // Detailed description
-    track: 'fullstack', // Course category - must match enum in Course schema
-    instructor: 'Full Stack Instructor', // Instructor name
-    duration: '8 weeks', // Course duration
-    price: 0, // Free course (0 = free)
-    thumbnail: 'https://via.placeholder.com/300x200/4A90D9/FFFFFF?text=MERN+Stack' // Image URL
+    title: 'MERN Stack Bootcamp Pakistan',
+    description: 'Complete full-stack web development with MongoDB, Express, React, and Node.js. Build real-world projects from scratch.',
+    track: 'fullstack',
+    instructor: 'Full Stack Instructor',
+    duration: '8 weeks',
+    price: 0,
+    thumbnail: 'https://via.placeholder.com/300x200/4A90D9/FFFFFF?text=MERN+Stack'
   },
   {
     title: 'Frontend React & Tailwind Course',
@@ -149,85 +147,67 @@ const courses = [
 ];
 
 // Sample student for testing
-// This creates one test student in the database
 const students = [
   {
-    name: 'Test Student', // Student's full name
-    email: 'test@student.com', // Unique email for login
-    password: 'password123', // Plain password (will be hashed in real app)
-    role: 'student', // User role: student, instructor, or admin
-    profilePicture: 'default.jpg' // Default profile image
+    name: 'Test Student',
+    email: 'test@student.com',
+    password: 'password123',
+    role: 'student',
+    profilePicture: 'default.jpg'
   }
 ];
 
 // Function to clear existing data and seed new data
-// This runs the entire seeding process
 const seedDatabase = async () => {
   try {
-    // STEP 1: Clear all existing data from collections
-    // This ensures we start with a clean database
     console.log('Clearing existing data...');
-    await Student.deleteMany({}); // Delete all students
-    await Course.deleteMany({}); // Delete all courses
-    await Enrollment.deleteMany({}); // Delete all enrollments
-    await Certificate.deleteMany({}); // Delete all certificates
+    await Student.deleteMany({});
+    await Course.deleteMany({});
+    await Enrollment.deleteMany({});
+    await Certificate.deleteMany({});
     console.log('Data cleared successfully');
 
-    // STEP 2: Insert all courses into the database
-    // This adds the 12 sample courses
     console.log('Inserting courses...');
     const insertedCourses = await Course.insertMany(courses);
     console.log('Inserted ' + insertedCourses.length + ' courses');
 
-    // STEP 3: Insert students into the database
-    // This adds the test student
     console.log('Inserting students...');
     const insertedStudents = await Student.insertMany(students);
     console.log('Inserted ' + insertedStudents.length + ' students');
 
-    // STEP 4: Create sample enrollments
-    // This enrolls the test student in courses
     console.log('Creating sample enrollments...');
-    const studentId = insertedStudents[0]._id; // Get the ID of the first student
+    const studentId = insertedStudents[0]._id;
     
-    // Enroll student in first 3 courses (active status with random progress)
     for (let i = 0; i < 3; i++) {
       const enrollment = new Enrollment({
-        studentId: studentId, // Reference to student
-        courseId: insertedCourses[i]._id, // Reference to course
-        status: 'active', // Enrollment status
-        progress: Math.floor(Math.random() * 100) // Random progress 0-99%
+        studentId: studentId,
+        courseId: insertedCourses[i]._id,
+        status: 'active',
+        progress: Math.floor(Math.random() * 100)
       });
-      await enrollment.save(); // Save to database
+      await enrollment.save();
     }
     console.log('Sample enrollments created');
 
-    // STEP 5: Create sample certificates
-    // This creates one completed enrollment and a certificate
     console.log('Creating sample certificates...');
-    
-    // Create a completed enrollment (progress 100%)
     const completedEnrollment = new Enrollment({
       studentId: studentId,
-      courseId: insertedCourses[3]._id, // Python course (index 3)
-      status: 'completed', // Status = completed
-      progress: 100 // 100% complete
+      courseId: insertedCourses[3]._id,
+      status: 'completed',
+      progress: 100
     });
     await completedEnrollment.save();
 
-    // Create certificate for the completed course
-    // Each certificate gets a unique hash for verification
     const certificate = new Certificate({
-      studentId: studentId, // Who earned it
-      courseId: insertedCourses[3]._id, // Which course
-      hash: 'CERT-' + Date.now() + '-' + Math.random().toString(36).substring(2, 8).toUpperCase(), // Unique verification code
-      issueDate: new Date(), // When it was issued
-      isVerified: true // Certificate is valid
+      studentId: studentId,
+      courseId: insertedCourses[3]._id,
+      hash: 'CERT-' + Date.now() + '-' + Math.random().toString(36).substring(2, 8).toUpperCase(),
+      issueDate: new Date(),
+      isVerified: true
     });
     await certificate.save();
     console.log('Sample certificate created');
 
-    // STEP 6: Print summary of what was added
     console.log('\n========================================');
     console.log('Database Seeding Complete!');
     console.log('========================================');
@@ -238,19 +218,14 @@ const seedDatabase = async () => {
     console.log('   - 1 sample certificate created');
     console.log('========================================');
     
-    // STEP 7: Disconnect from database
-    // Clean up the connection
     await mongoose.disconnect();
     console.log('Database disconnected');
 
   } catch (error) {
-    // If any error occurs, log it and exit
     console.error('Seeding error:', error);
     await mongoose.disconnect();
-    process.exit(1); // Exit with error code
+    process.exit(1);
   }
 };
 
-// Run the seed function
-// This starts the entire seeding process
 seedDatabase();

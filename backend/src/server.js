@@ -11,8 +11,11 @@ dotenv.config({ path: path.resolve(__dirname, '../.env') });
 console.log("JWT Secret Loaded:", process.env.JWT_SECRET ? "Yes ✅" : "No ❌");
 console.log("MONGODB URI Loaded:", process.env.MONGODB_URI ? "Yes ✅" : "No ❌");
 
-// Import auth routes AFTER dotenv is configured
+// Import routes
 const authRoutes = require('./routes/authRoutes');
+const courseRoutes = require('./routes/courseRoutes');
+const enrollmentRoutes = require('./routes/enrollmentRoutes');
+const certificateRoutes = require('./routes/certificateRoutes');
 
 const app = express();
 
@@ -32,6 +35,15 @@ app.get('/api/health', (req, res) => {
 // Authentication routes
 app.use('/api/auth', authRoutes);
 
+// Course routes
+app.use('/api/courses', courseRoutes);
+
+// Enrollment routes
+app.use('/api/enrollments', enrollmentRoutes);
+
+// Certificate routes
+app.use('/api/certificates', certificateRoutes);
+
 // DATABASE CONNECTION & SERVER START
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/eduflex')
   .then(() => {
@@ -44,6 +56,18 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/eduflex')
       console.log('Auth routes:');
       console.log('  POST /api/auth/register');
       console.log('  POST /api/auth/login');
+      console.log('Course routes:');
+      console.log('  GET /api/courses');
+      console.log('  GET /api/courses/:track');
+      console.log('  GET /api/courses/id/:id');
+      console.log('Enrollment routes:');
+      console.log('  POST /api/enrollments');
+      console.log('  GET /api/enrollments/me');
+      console.log('  PUT /api/enrollments/:id');
+      console.log('Certificate routes:');
+      console.log('  POST /api/certificates');
+      console.log('  GET /api/certificates/me');
+      console.log('  GET /api/certificates/verify/:hash');
     });
   })
   .catch(err => {
