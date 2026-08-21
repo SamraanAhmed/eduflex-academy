@@ -143,6 +143,7 @@ This bootcamp takes you from zero to job-ready full-stack developer using the ME
            {showForm && (
         <EnrollmentForm
           courseTitle="MernBootcamp course"
+          courseSlug="mern-bootcamp"
           onClose={() => setShowForm(false)}
         />
              )};

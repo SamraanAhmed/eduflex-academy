@@ -198,6 +198,7 @@ const ReactMasterclass=()=>{
       {showForm && (
         <EnrollmentForm
           courseTitle="React Masterclass"
+          courseSlug="react-masterclass"
           onClose={() => setShowForm(false)}
         />
       )}

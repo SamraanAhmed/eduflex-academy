@@ -154,6 +154,7 @@ const NodeApiCourse=()=>{
       {showForm && (
         <EnrollmentForm
           courseTitle="Node.js API Architecture Course"
+          courseSlug="Node-api-course"
           onClose={() => setShowForm(false)}
         />
       )}
