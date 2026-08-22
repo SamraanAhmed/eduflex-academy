@@ -16,6 +16,7 @@ const authRoutes = require('./routes/authRoutes');
 const courseRoutes = require('./routes/courseRoutes');
 const enrollmentRoutes = require('./routes/enrollmentRoutes');
 const certificateRoutes = require('./routes/certificateRoutes');
+const adminRoutes = require('./routes/adminRoutes'); // NEW
 
 const app = express();
 
@@ -44,6 +45,9 @@ app.use('/api/enrollments', enrollmentRoutes);
 // Certificate routes
 app.use('/api/certificates', certificateRoutes);
 
+// Admin routes
+app.use('/api/admin', adminRoutes); // NEW
+
 // DATABASE CONNECTION & SERVER START
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/eduflex')
   .then(() => {
@@ -68,6 +72,13 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/eduflex')
       console.log('  POST /api/certificates');
       console.log('  GET /api/certificates/me');
       console.log('  GET /api/certificates/verify/:hash');
+      console.log('Admin routes:');
+      console.log('  GET /api/admin/enrollments');
+      console.log('  PATCH /api/admin/enrollments/:id');
+      console.log('  GET /api/admin/courses');
+      console.log('  POST /api/admin/courses');
+      console.log('  PUT /api/admin/courses/:id');
+      console.log('  DELETE /api/admin/courses/:id');
     });
   })
   .catch(err => {
