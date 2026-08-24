@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const rateLimit = require('express-rate-limit');
 
 // Import configuration
 const config = require('./config/config');
@@ -13,6 +14,25 @@ const certificateRoutes = require('./routes/certificateRoutes');
 const adminRoutes = require('./routes/adminRoutes');
 
 const app = express();
+
+// ============================================
+// RATE LIMITING
+// ============================================
+
+// Rate limiting - prevents too many requests from same IP
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // Limit each IP to 100 requests per windowMs
+  message: {
+    success: false,
+    message: 'Too many requests from this IP, please try again later.'
+  },
+  standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
+  legacyHeaders: false, // Disable the `X-RateLimit-*` headers
+});
+
+// Apply rate limiting to all API routes
+app.use('/api', limiter);
 
 // ============================================
 // CORS CONFIGURATION
@@ -63,7 +83,7 @@ app.use('/api/certificates', certificateRoutes);
 app.use('/api/admin', adminRoutes);
 
 // ============================================
-// 404 Handler
+// 404 Handler - Route not found
 // ============================================
 
 app.use((req, res) => {
@@ -74,11 +94,13 @@ app.use((req, res) => {
 });
 
 // ============================================
-// ERROR HANDLER
+// GLOBAL ERROR HANDLER
 // ============================================
 
 app.use((err, req, res, next) => {
   console.error('Error:', err.message);
+  console.error('Stack:', err.stack);
+
   const status = err.status || 500;
   res.status(status).json({
     success: false,
@@ -116,6 +138,7 @@ mongoose.connect(config.database.uri)
       console.log('  GET /api/admin/enrollments');
       console.log('  PATCH /api/admin/enrollments/:id');
       console.log('========================================');
+      console.log('Rate Limiting: 100 requests per 15 minutes');
       console.log('CORS allowed origins:');
       config.cors.allowedOrigins.forEach(origin => {
         console.log('  - ' + origin);
