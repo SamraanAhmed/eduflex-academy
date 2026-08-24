@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 
+import axios from 'axios';
+
+const API_BASE = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 const overlayStyle = {
   position: 'fixed', top: 0, left: 0, right: 0, bottom: 0,
   backgroundColor: 'rgba(0, 0, 0, 0.5)', display: 'flex',
@@ -32,7 +35,8 @@ const EnrollmentForm = ({ courseTitle, onClose }) => {
   const [formData, setFormData] = useState({ name: '', email: '', phone: '' ,experience:''});
   const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState({});
-
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState(null);
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormData((previous) => ({ ...previous, [name]: value }));
@@ -66,20 +70,37 @@ const EnrollmentForm = ({ courseTitle, onClose }) => {
     return newErrors;
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const validationErrors = validate();
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       return;
     }
-    console.log('Enrollment submitted:', {
-      ...formData,
-      course: courseTitle
-    });
-    setSubmitted(true);
-  };
 
+    setSubmitting(true);
+    setSubmitError(null);
+    try {
+      await axios.post(`${API_BASE}/api/enrollments`, {
+        studentName: formData.name,
+        studentEmail: formData.email,
+        studentPhone: formData.phone,
+        track: 'web-development',
+        courseName: courseTitle,
+        
+        experience: formData.experience,
+      });
+      setSubmitted(true);
+    } catch (err) {
+      setSubmitError(
+        'Something went wrong submitting your registration. Please try again in a moment.'
+      );
+    } finally {
+      setSubmitting(false);
+    }
+  };
+   
+   
   return (
     <div style={overlayStyle} onClick={onClose}>
       <div style={modalStyle} onClick={(event) => event.stopPropagation()}>

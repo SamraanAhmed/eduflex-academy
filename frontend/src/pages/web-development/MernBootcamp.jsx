@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import EnrollmentForm from './EnrollmentForm';
 import HeroSection from './HeroSection';
+import './webdev-styles.css';
 
 const SYLLABUS = [
   {
@@ -20,11 +21,12 @@ const SYLLABUS = [
     module: 'Module 4: React.js',
     topics: ['Components, props & JSX', 'Hooks (useState, useEffect, useContext)', 'React Router & client-side navigation'],
   },
-   {
+  {
     module: 'Module 5: Node.js & Deployment',
     topics: ['Server-side architecture & event loop', 'Environment configuration', 'Deployment to production'],
   },
 ];
+
 const PROJECTS = [
   {
     title: 'Task Management App',
@@ -35,56 +37,63 @@ const PROJECTS = [
     description: 'Product listings, cart functionality, and checkout flow — practicing React state management and API integration.',
   },
   {
-    title: 'Currency converter',
-    description: 'A complete, currency converter — portfolio-ready by the end of the bootcamp.',
+    title: 'Currency Converter',
+    description: 'A complete, deployed currency converter — portfolio-ready by the end of the bootcamp.',
   },
 ];
-const MernBootcamp=()=>{
+
+const MernBootcamp = () => {
   const [showForm, setShowForm] = useState(false);
 
-    return (
-        <div style={{padding:'40px',margin:'auto',maxWidth:'900px',fontFamily:'sans-serif'}}>
-            <Link to="/web-development" style={{color:'#4a154b',textDecoration:'none',padding:'14px'}}>
-            Back to Web Development Track
-            </Link>
-             <div
-        style={{
-          background: 'linear-gradient(135deg, #4a154b, #2e0830)',
-          borderLeft: '4px solid #a855f7',
-          padding: '20px',
-          borderRadius: '8px',
-          margin: '20px 0 30px 0',
-          color: '#fff',
-        }}
+  return (
+    <div
+      className="wd-page"
+      style={{ padding: '40px', margin: 'auto', maxWidth: '900px', fontFamily: 'sans-serif' }}
+    >
+      <Link
+        to="/web-development"
+        className="wd-nav-link"
+        style={{ color: '#4a154b', textDecoration: 'none', padding: '14px' }}
       >
-       <h1 style={{color:'blue',margin:'10px'}} >MERN Stack Bootcamp Pakistan</h1>
-       <p style={{color:'white',margin:'0'}}>
-        Full-stack development with MongoDB, Express, React, and Node.js
-       </p>
+        Back to Web Development Track
+      </Link>
+
+      <div className="wd-hero">
+        <HeroSection
+          icon="🚀"
+          title="MERN Stack Bootcamp Pakistan"
+          subtitle="Full-stack development with MongoDB, Express, React, and Node.js"
+        />
       </div>
-      <div style={{display: 'flex', flexWrap: 'wrap', gap: '10px', marginBottom: '25px' }}>
-         <span style={{ background: '#f3e8ff', color: '#6b21a8', padding: '6px 12px', borderRadius: '6px', fontSize: '14px' }}>
+
+      <div className="wd-tags" style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', marginBottom: '25px' }}>
+        <span style={{ background: '#f3e8ff', color: '#6b21a8', padding: '6px 12px', borderRadius: '6px', fontSize: '14px' }}>
           ⏱ Duration: 4 Months
         </span>
-         <span style={{ background: '#f3e8ff', color: '#6b21a8', padding: '6px 12px', borderRadius: '6px', fontSize: '14px' }}>
-          ⏱ Fee: PKR 55,000
+        <span style={{ background: '#f3e8ff', color: '#6b21a8', padding: '6px 12px', borderRadius: '6px', fontSize: '14px' }}>
+          💳 Fee: PKR 55,000
         </span>
-         <span style={{ background: '#f3e8ff', color: '#6b21a8', padding: '6px 12px', borderRadius: '6px', fontSize: '14px' }}>
+        <span style={{ background: '#f3e8ff', color: '#6b21a8', padding: '6px 12px', borderRadius: '6px', fontSize: '14px' }}>
           Level: Beginner to Advanced
         </span>
       </div>
-      <h2 style={{color:'#4a154b'}}>
+
+      <h2 className="wd-section-heading" style={{ color: '#4a154b' }}>
         About this Course
       </h2>
-      <p style={{color:'#555',lineHeight:'1.6'}}>
-This bootcamp takes you from zero to job-ready full-stack developer using the MERN stack.
+      <p style={{ color: '#555', lineHeight: '1.6' }}>
+        This bootcamp takes you from zero to job-ready full-stack developer using the MERN stack.
         You'll build real applications end to end — from database schema design through to a
-        deployed, working product — with hands-on labs and a capstone project for your portfolio
+        deployed, working product — with hands-on labs and a capstone project for your portfolio.
       </p>
-       <h2 style={{ color: '#4a154b', marginTop: '40px' }}>📖 Syllabus Breakdown</h2>
+
+      <h2 className="wd-section-heading" style={{ color: '#4a154b', marginTop: '40px' }}>
+        📖 Syllabus Breakdown
+      </h2>
       {SYLLABUS.map((section) => (
         <div
           key={section.module}
+          className="wd-card"
           style={{
             backgroundColor: '#f9f5ff',
             border: '1px solid #e9d5ff',
@@ -101,7 +110,10 @@ This bootcamp takes you from zero to job-ready full-stack developer using the ME
           </ul>
         </div>
       ))}
- <h2 style={{ color: '#4a154b', marginTop: '40px' }}>🛠 Hands-On Projects</h2>
+
+      <h2 className="wd-section-heading" style={{ color: '#4a154b', marginTop: '40px' }}>
+        🛠 Hands-On Projects
+      </h2>
       <div
         style={{
           display: 'grid',
@@ -112,6 +124,7 @@ This bootcamp takes you from zero to job-ready full-stack developer using the ME
         {PROJECTS.map((project) => (
           <div
             key={project.title}
+            className="wd-card"
             style={{
               backgroundColor: '#fff',
               border: '1px solid #e9d5ff',
@@ -119,7 +132,7 @@ This bootcamp takes you from zero to job-ready full-stack developer using the ME
               padding: '18px',
               boxShadow: '0 2px 8px rgba(0,0,0,0.05)',
             }}
-              >
+          >
             <h4 style={{ color: '#4a154b', margin: '0 0 8px 0' }}>{project.title}</h4>
             <p style={{ color: '#555', margin: 0, fontSize: '14px', lineHeight: 1.6 }}>
               {project.description}
@@ -127,9 +140,12 @@ This bootcamp takes you from zero to job-ready full-stack developer using the ME
           </div>
         ))}
       </div>
- 
-      <button onClick={() => setShowForm(true)}
-      style={{backgroundColor: '#4a154b',
+
+      <button
+        onClick={() => setShowForm(true)}
+        className="wd-btn-primary"
+        style={{
+          backgroundColor: '#4a154b',
           color: '#fff',
           border: 'none',
           padding: '12px 24px',
@@ -137,16 +153,20 @@ This bootcamp takes you from zero to job-ready full-stack developer using the ME
           cursor: 'pointer',
           fontSize: '16px',
           marginTop: '20px',
-        }}>
-          Enroll Now
-          </button>
-           {showForm && (
+        }}
+      >
+        Enroll Now
+      </button>
+
+      {showForm && (
         <EnrollmentForm
-          courseTitle="MernBootcamp course"
+          courseTitle="MERN Stack Bootcamp Pakistan"
+          courseSlug="mern-bootcamp"
           onClose={() => setShowForm(false)}
         />
-             )};
-      </div>
-    );
+      )}
+    </div>
+  );
 };
+
 export default MernBootcamp;
