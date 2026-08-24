@@ -3,7 +3,8 @@ import React from 'react';
 const HeroSection = ({ icon, title, subtitle, meta }) => {
   return (
     <div
-      style={{
+    className="wd-page"
+    style={{
         background: 'linear-gradient(135deg, #4a154b, #2e0830)',
         borderLeft: '4px solid #a855f7',
         padding: '20px',

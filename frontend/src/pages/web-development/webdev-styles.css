@@ -1,0 +1,80 @@
+@keyframes fadeInUp{
+    from{
+        opacity: 0;
+        transform: translateY(12px);
+  }
+  to{
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.wd-page{
+  animation: fadeInUp 0.4s ease;
+}
+.wd-card{
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.wd-card:hover{
+    transform: translateY(-4px);
+    box-shadow:  0 10px 24px rgba(74, 21, 75, 0.15);
+}
+.wd-btn-primary:hover {
+  background-color: #6b21a8 !important;
+  box-shadow: 0 4px 12px rgba(74, 21, 75, 0.3);
+}
+.wd-btn-primary:active {
+  transform: scale(0.97);
+}
+
+.wd-btn-secondary:hover {
+  background-color: #e9d5ff !important;
+}
+.wd-btn-secondary:active {
+  transform: scale(0.97);
+}
+.wd-tile:hover {
+  border-color: #a855f7 !important;
+  transform: translateY(-2px);
+}
+@media (max-width: 768px) {
+  .wd-page {
+    padding: 20px !important;
+  }
+
+  .wd-hero {
+    padding: 16px !important;
+  }
+
+  .wd-hero h1 {
+    font-size: 22px !important;
+  }
+
+  .wd-section-heading {
+    font-size: 18px !important;
+    margin-top: 28px !important;
+  }
+  @media (max-width: 460px) {
+    .wd-page {
+    padding: 13px !important;
+  }
+
+  .wd-hero {
+    padding: 12px !important;
+  }
+
+  .wd-hero h1 {
+    font-size: 20px !important;
+  }
+
+  .wd-section-heading {
+    font-size: 15px !important;
+    margin-top: 14px !important;
+  }
+  .wd-btn-primary,
+  .wd-btn-secondary {
+    width: 100% !important;
+  }
+  }
+}
+
+

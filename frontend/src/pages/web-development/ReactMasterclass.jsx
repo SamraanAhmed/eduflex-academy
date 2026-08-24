@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import EnrollmentForm from './EnrollmentForm';
-const CODE_SNIPPETS=[
+import './webdev-styles.css';
+
+const CODE_SNIPPETS = [
   {
     title: 'useState — Basic Counter',
     code: `const [count, setCount] = useState(0);
@@ -31,9 +33,10 @@ const CODE_SNIPPETS=[
 }`,
   },
 ];
-const INSTRUCTORS=[
+
+const INSTRUCTORS = [
   {
-     name: 'Sidra Malik',
+    name: 'Sidra Malik',
     title: 'Senior Frontend Engineer, 5+ years React experience',
     bio: 'Previously built production React apps for fintech and e-commerce platforms. Passionate about teaching clean component architecture.',
   },
@@ -43,27 +46,35 @@ const INSTRUCTORS=[
     bio: 'Specializes in performance optimization and state management patterns. Has trained 500+ students in React fundamentals.',
   },
 ];
-  const TESTIMONIALS = [
+
+const TESTIMONIALS = [
   {
-    name: 'Sana saqib',
+    name: 'Sana Saqib',
     role: 'Bootcamp Graduate, now Frontend Developer',
     quote: 'The hooks module finally made React click for me. I went from confused to confident in weeks.',
   },
   {
-    name: 'Usman ali',
+    name: 'Usman Ali',
     role: 'Bootcamp Graduate, now Full-Stack Developer',
     quote: 'The custom hooks section alone was worth the course. I use useLocalStorage in every project now.',
   },
 ];
-const ReactMasterclass=()=>{
+
+const ReactMasterclass = () => {
   const [showForm, setShowForm] = useState(false);
 
-    return (
-        <div style={{padding:'40px',margin:'auto',maxWidth:'900px',fontFamily:'sans-serif'}}>
-            <Link to="/web-development" style={{color:'#4a154b',textDecoration:'none',padding:'14px'}}>
-            Back to Web Development Track
-            </Link>
-             <div
+  return (
+    <div className="wd-page" style={{ padding: '40px', margin: 'auto', maxWidth: '900px', fontFamily: 'sans-serif' }}>
+      <Link
+        to="/web-development"
+        className="wd-nav-link"
+        style={{ color: '#4a154b', textDecoration: 'none', padding: '14px' }}
+      >
+        Back to Web Development Track
+      </Link>
+
+      <div
+        className="wd-hero"
         style={{
           background: 'linear-gradient(135deg, #4a154b, #2e0830)',
           borderLeft: '4px solid #a855f7',
@@ -73,41 +84,48 @@ const ReactMasterclass=()=>{
           color: '#fff',
         }}
       >
-      <h1 style={{ color: 'blue', margin: '10px' }}>ReactMasterclass</h1>
-       <p style={{color:'white',margin:'0'}}>
-        Modern React development — hooks, architecture, and production patterns
-       </p>
+        <h1 style={{ color: '#d8b4fe', margin: '10px' }}>React Masterclass</h1>
+        <p style={{ color: 'white', margin: '0' }}>
+          Modern React development — hooks, architecture, and production patterns
+        </p>
       </div>
-      <div style={{display: 'flex', flexWrap: 'wrap', gap: '10px', marginBottom: '25px' }}>
-         <span style={{ background: '#f3e8ff', color: '#6b21a8', padding: '6px 12px', borderRadius: '6px', fontSize: '14px' }}>
+
+      <div className="wd-tags" style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', marginBottom: '25px' }}>
+        <span style={{ background: '#f3e8ff', color: '#6b21a8', padding: '6px 12px', borderRadius: '6px', fontSize: '14px' }}>
           ⏱ Duration: 3 Months
         </span>
-         <span style={{ background: '#f3e8ff', color: '#6b21a8', padding: '6px 12px', borderRadius: '6px', fontSize: '14px' }}>
-          ⏱ Fee: PKR 35,000
+        <span style={{ background: '#f3e8ff', color: '#6b21a8', padding: '6px 12px', borderRadius: '6px', fontSize: '14px' }}>
+          💳 Fee: PKR 35,000
         </span>
-         <span style={{ background: '#f3e8ff', color: '#6b21a8', padding: '6px 12px', borderRadius: '6px', fontSize: '14px' }}>
+        <span style={{ background: '#f3e8ff', color: '#6b21a8', padding: '6px 12px', borderRadius: '6px', fontSize: '14px' }}>
           Level: Beginner to Intermediate
         </span>
       </div>
-      <h2 style={{color:'#4a154b'}}>
+
+      <h2 className="wd-section-heading" style={{ color: '#4a154b' }}>
         About this Course
       </h2>
-      <p style={{color:'#555',lineHeight:'1.6'}}>
- This masterclass goes deep on React — the library, not just the syntax. You'll learn to
+      <p style={{ color: '#555', lineHeight: '1.6' }}>
+        This masterclass goes deep on React — the library, not just the syntax. You'll learn to
         think in components, manage state cleanly, and structure applications the way production
         teams do, with a focus on patterns that scale beyond toy projects.
       </p>
-      <h2 style={{color:'#4a154b'}}>Syllabus</h2>
-      <ul style={{color:'#555',lineHeight:'1.6'}}>
- <li>Module 1: JavaScript & ES6+ fundamentals</li>
-       <li>Module 1: JSX, components, and props</li>
+
+      <h2 className="wd-section-heading" style={{ color: '#4a154b' }}>
+        Syllabus
+      </h2>
+      <ul style={{ color: '#555', lineHeight: '1.6' }}>
+        <li>Module 1: JSX, components, and props</li>
         <li>Module 2: Hooks — useState, useEffect, useContext, custom hooks</li>
         <li>Module 3: State management patterns and data flow</li>
         <li>Module 4: React Router — client-side routing and navigation</li>
         <li>Module 5: Performance — memoization, code splitting</li>
         <li>Module 6: Final project — a multi-page React application</li>
       </ul>
-      <h2 style={{ color: '#4a154b', marginTop: '40px' }}>💻 Code You'll Learn to Write</h2>
+
+      <h2 className="wd-section-heading" style={{ color: '#4a154b', marginTop: '40px' }}>
+        💻 Code You'll Learn to Write
+      </h2>
       {CODE_SNIPPETS.map((snippet) => (
         <div key={snippet.title} style={{ marginBottom: '16px' }}>
           <h4 style={{ color: '#4a154b', margin: '0 0 8px 0' }}>{snippet.title}</h4>
@@ -123,11 +141,14 @@ const ReactMasterclass=()=>{
               fontFamily: 'Consolas, Monaco, monospace',
             }}
           >
-              <code>{snippet.code}</code>
-              </pre>
+            <code>{snippet.code}</code>
+          </pre>
         </div>
       ))}
-           <h2 style={{ color: '#4a154b', marginTop: '40px' }}>👩‍🏫 Your Instructors</h2>
+
+      <h2 className="wd-section-heading" style={{ color: '#4a154b', marginTop: '40px' }}>
+        👩‍🏫 Your Instructors
+      </h2>
       <div
         style={{
           display: 'grid',
@@ -138,6 +159,7 @@ const ReactMasterclass=()=>{
         {INSTRUCTORS.map((instructor) => (
           <div
             key={instructor.name}
+            className="wd-card"
             style={{
               backgroundColor: '#fff',
               border: '1px solid #e9d5ff',
@@ -146,13 +168,16 @@ const ReactMasterclass=()=>{
               boxShadow: '0 2px 8px rgba(0,0,0,0.05)',
             }}
           >
-             <h4 style={{ color: '#4a154b', margin: '0 0 4px 0' }}>{instructor.name}</h4>
+            <h4 style={{ color: '#4a154b', margin: '0 0 4px 0' }}>{instructor.name}</h4>
             <p style={{ color: '#6b21a8', fontSize: '13px', margin: '0 0 8px 0' }}>{instructor.title}</p>
             <p style={{ color: '#555', fontSize: '14px', margin: 0, lineHeight: 1.6 }}>{instructor.bio}</p>
           </div>
         ))}
       </div>
-       <h2 style={{ color: '#4a154b', marginTop: '40px' }}>⭐ Student Testimonials</h2>
+
+      <h2 className="wd-section-heading" style={{ color: '#4a154b', marginTop: '40px' }}>
+        ⭐ Student Testimonials
+      </h2>
       <div
         style={{
           display: 'grid',
@@ -163,6 +188,7 @@ const ReactMasterclass=()=>{
         {TESTIMONIALS.map((t) => (
           <div
             key={t.name}
+            className="wd-card"
             style={{
               backgroundColor: '#f9f5ff',
               border: '1px solid #e9d5ff',
@@ -181,6 +207,7 @@ const ReactMasterclass=()=>{
 
       <button
         onClick={() => setShowForm(true)}
+        className="wd-btn-primary"
         style={{
           backgroundColor: '#4a154b',
           color: '#fff',
@@ -202,7 +229,8 @@ const ReactMasterclass=()=>{
           onClose={() => setShowForm(false)}
         />
       )}
-      </div>
-    );
+    </div>
+  );
 };
+
 export default ReactMasterclass;

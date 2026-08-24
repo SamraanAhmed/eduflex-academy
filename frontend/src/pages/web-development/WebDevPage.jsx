@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+import './webdev-styles.css';
 const TRACK_COURSES=[
   {
   slug:'mern-bootcamp',
@@ -70,7 +70,10 @@ const sectionHeadingStyle = {
 
 const WebdevPage=()=>{
   return(
-    <div style={{padding:'40px',margin:'auto',maxWidth:'1100px',fontFamily:'sans-serif'}}>
+    <div
+      className="wd-page"
+      style={{ padding: '40px', margin: 'auto', maxWidth: '1100px', fontFamily: 'sans-serif' }}
+    >
       <div
         style={{
           background: 'linear-gradient(135deg, #4a154b, #2e0830)',
@@ -81,10 +84,10 @@ const WebdevPage=()=>{
           color: '#fff',
         }}
       >
-        <h1 style={{color:'#fff',margin:'10px'}}>Full-Stack Web Development</h1>
+        <h1 className="wd-hero" style={{ color: '#fff', margin: '10px' }}>Full-Stack Web Development</h1>
         <p style={{ color: '#e9d5ff', margin: 0 }}>Assigned developer:<strong>Shanzil Iftikhar(Full Stack)</strong></p>
       </div>
-      <h2 style={sectionHeadingStyle}>📚 Curriculum Overview</h2>
+      <h2 className="wd-section-heading" style={sectionHeadingStyle}>📚 Curriculum Overview</h2>
       <p style={{ color: '#555', marginBottom: '20px' }}>
         This track takes you from web fundamentals to a fully deployed full-stack application,
         covering every layer of the MERN stack.
@@ -99,6 +102,7 @@ const WebdevPage=()=>{
         {CURRICULUM_MODULES.map((mod) => (
           <div
             key={mod.title}
+            className="wd-tile"
             style={{
               backgroundColor: '#f9f5ff',
               border: '1px solid #e9d5ff',
@@ -111,7 +115,7 @@ const WebdevPage=()=>{
           </div>
         ))}
       </div>
-      <h2 style={sectionHeadingStyle}>💼 Career Outcomes & Salary Ranges</h2>
+      <h2 className="wd-section-heading" style={sectionHeadingStyle}>💼 Career Outcomes & Salary Ranges</h2>
       <p style={{ color: '#555', marginBottom: '20px' }}>
         Roles graduates of this track commonly pursue. Figures are approximate industry
         estimates for the Pakistani job market and vary by experience, company, and location.
@@ -155,6 +159,7 @@ const WebdevPage=()=>{
             <p style={{ color: '#555', flex: 1 }}>{course.summary}</p>
 
             <div
+              className="wd-card"
               style={{
                 display: 'flex',
                 flexWrap: 'wrap',
@@ -172,7 +177,7 @@ const WebdevPage=()=>{
               </span>
             </div>
 
-            <Link to={`/web-development/${course.slug}`} style={buttonStyle}>
+            <Link to={`/web-development/${course.slug}`} className="wd-btn-primary" style={buttonStyle}>
               Explore Course
             </Link>
           </div>
