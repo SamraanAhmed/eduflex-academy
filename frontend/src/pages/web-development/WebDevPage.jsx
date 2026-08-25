@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './webdev-styles.css';
+import SEO from './SEO';
 const TRACK_COURSES=[
   {
   slug:'mern-bootcamp',
@@ -74,6 +75,10 @@ const WebdevPage=()=>{
       className="wd-page"
       style={{ padding: '40px', margin: 'auto', maxWidth: '1100px', fontFamily: 'sans-serif' }}
     >
+      <SEO
+  title="Full-Stack Web Development Track | EduFlex Academy"
+  description="Learn MERN stack development with EduFlex Academy — MERN Bootcamp, React Masterclass, and Node.js API Architecture courses in Pakistan."
+  url= "https://your-domain-here.com/web-development"  />
       <div
         style={{
           background: 'linear-gradient(135deg, #4a154b, #2e0830)',

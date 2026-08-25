@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import EnrollmentForm from './EnrollmentForm';
 import HeroSection from './HeroSection';
 import './webdev-styles.css';
+import SEO from './SEO';
 
 const SYLLABUS = [
   {
@@ -50,6 +51,11 @@ const MernBootcamp = () => {
       className="wd-page"
       style={{ padding: '40px', margin: 'auto', maxWidth: '900px', fontFamily: 'sans-serif' }}
     >
+      <SEO
+  title="MERN Stack Bootcamp Pakistan | EduFlex Academy"
+  description="4-month hands-on MERN Stack Bootcamp covering MongoDB, Express, React, and Node.js. Build a portfolio-ready capstone project."
+  url="https://your-domain-here.com/web-development/mern-bootcamp"
+/>
       <Link
         to="/web-development"
         className="wd-nav-link"
