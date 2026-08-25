@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import EnrollmentForm from './EnrollmentForm';
 import './webdev-styles.css';
+import SEO from './SEO';
 
 const BASE_FEE = 30000;
 const INSTALLMENT_PLANS = [
@@ -25,7 +26,11 @@ const NodeApiCourse = () => {
       >
         Back to Web Development Track
       </Link>
-
+<SEO
+  title="Node.js API Architecture Course | EduFlex Academy"
+  description="Build and secure production-grade REST APIs with Node.js and Express. Learn authentication, middleware, and deployment in 2 months."
+  url="https://your-domain-here.com/web-development/node-api-course"
+/>
       <div
         className="wd-hero"
         style={{

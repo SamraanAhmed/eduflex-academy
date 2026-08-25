@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import EnrollmentForm from './EnrollmentForm';
 import './webdev-styles.css';
+import SEO from './SEO';
 
 const CODE_SNIPPETS = [
   {
@@ -65,6 +66,11 @@ const ReactMasterclass = () => {
 
   return (
     <div className="wd-page" style={{ padding: '40px', margin: 'auto', maxWidth: '900px', fontFamily: 'sans-serif' }}>
+    <SEO
+  title="React Masterclass | EduFlex Academy"
+  description="Master modern React — hooks, component architecture, state management, and production patterns. 3-month masterclass for beginners to intermediate learners."
+  url="https://your-domain-here.com/web-development/react-masterclass"
+/>
       <Link
         to="/web-development"
         className="wd-nav-link"
